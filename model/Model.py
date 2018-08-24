@@ -1,10 +1,10 @@
 from model.Msg import Msg
 from model.User import User
-from consts import messages_rendered
+from consts import messages_rendered, chat_file
 
 
 def get_msgs():
-    file = open("RestreamChat.txt", "r")
+    file = open(chat_file, "r", encoding='utf-8')
     lineas = []
     linea_splited = file.readline().replace('\n', '').split(" ", 3)
     while linea_splited[0] != '':
@@ -13,7 +13,7 @@ def get_msgs():
         linea_splited = file.readline().replace('\n', '').split(" ", 3)
     file.close()
 
-    lineas = lineas[-20:][::-1]
+    lineas = lineas[-messages_rendered:][::-1]
     msgs = []
 
     for i in range(len(lineas)):

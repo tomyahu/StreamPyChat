@@ -12,13 +12,13 @@ class Frame():
         self.tex = texture.get_texture()
         self.screen = screen
         self.x = winWidth/2
-        self.y = messages_below_y + self.tex.alto/2
+        self.y = messages_below_y - self.tex.alto/2
 
     #dbuja el boton
     def draw(self):
-        self.y -= self.tex.alto/2
+        self.y += self.tex.alto/2
         self.tex.rescale_y(self.font.size("a")[1] * self.get_lines_msg() + 20)
-        self.y += self.tex.alto / 2
+        self.y -= self.tex.alto / 2
         self.screen.blit(self.tex.image, (self.getXin(), self.getYin()))
         self.drawText((255,255,255))
 
@@ -125,5 +125,5 @@ class Frame():
 class DefaultFrame(Frame):
 
     def __init__(self, msg, screen, messages_below):
-        Frame.__init__(self, msg, marcoTex, screen, messages_below, pygame.font.Font('view/fonts/pkmnem.ttf', 20))
+        Frame.__init__(self, msg, marcoTex, screen, messages_below, pygame.font.Font('view/fonts/HUM521B.TTF', 20))
 

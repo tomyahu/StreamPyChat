@@ -39,7 +39,7 @@ while True:
 
     total_y = 10
     for i in range(len(msgs)):
-        curr_frame = DefaultFrame(msgs[i], surface, total_y)
+        curr_frame = DefaultFrame(msgs[i], surface, winHeight - total_y)
         curr_frame.draw()
         total_y += curr_frame.tex.alto + 10
 
