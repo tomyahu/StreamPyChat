@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from consts import winHeight, winWidth, FPS, COLOR_Black
 from model.Model import get_msgs
-from view.Frame import DefaultFrame
+from view.Frame import DefaultFrame, FrameFactory
 
 # Se inician modulos
 pygame.init()
@@ -16,6 +16,9 @@ pygame.display.set_caption('Chat')
 
 # Se crea el reloj
 clock = pygame.time.Clock()
+
+# Se crea la fabrica de frames
+factory = FrameFactory()
 
 # Entra en bucle principal
 while True:
@@ -39,7 +42,7 @@ while True:
 
     total_y = 10
     for i in range(len(msgs)):
-        curr_frame = DefaultFrame(msgs[i], surface, winHeight - total_y)
+        curr_frame = factory.get_Frame(msgs[i], surface, winHeight - total_y)
         curr_frame.draw()
         total_y += curr_frame.tex.alto + 10
 

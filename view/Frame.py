@@ -1,6 +1,7 @@
 import pygame
 from consts import winWidth, winHeight
 from view.imageBank import marcoTex
+from .Texture import Spitted_Texture
 
 class Frame():
 
@@ -19,7 +20,7 @@ class Frame():
         self.y += self.tex.alto/2
         self.tex.rescale_y(self.font.size("a")[1] * self.get_lines_msg() + 20)
         self.y -= self.tex.alto / 2
-        self.screen.blit(self.tex.image, (self.getXin(), self.getYin()))
+        self.tex.draw(self.screen, self.getXin(), self.getYin(), self.getXfin(), self.getYfin())
         self.drawText((255,255,255))
 
     def get_lines_msg(self):
@@ -120,6 +121,22 @@ class Frame():
     # devuelve el y mas abajo de su textura
     def getYfin(self):
         return self.y + (self.tex.alto/2)
+
+class FrameFactory():
+
+    def __init__(self):
+        self.texture = Spitted_Texture('default',  winWidth*0.95, 100)
+        self.font = pygame.font.Font('view/fonts/HUM521B.TTF', 20)
+
+    def set_texture(self, tex):
+        self.texture = tex
+
+    def set_font(self, font):
+        self.font = font
+
+    def get_Frame(self, msg, screen, messages_below):
+        return Frame(msg, self.texture, screen, messages_below, self.font)
+
 
 
 class DefaultFrame(Frame):
