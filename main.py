@@ -5,6 +5,9 @@ from consts import winHeight, winWidth, FPS, COLOR_Black
 from model.Model import get_msgs
 from view.Frame import DefaultFrame, FrameFactory
 
+from view.textureBank import *
+from view.fontBank import *
+
 # Se inician modulos
 pygame.init()
 pygame.font.init()

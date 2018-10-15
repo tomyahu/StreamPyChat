@@ -1,5 +1,5 @@
 import pygame
-from consts import image_dir
+from view.imageBank import load_background_image, load_border_image, load_bottom_image, load_top_image
 
 class Texture():
 
@@ -25,13 +25,13 @@ class Spitted_Texture(Texture):
 
     def __init__(self, folder, width, height):
         self.folder = folder
-        self.top = pygame.image.load(image_dir + folder + '/top.png')
+        self.top = load_top_image(folder)
         self.top = pygame.transform.scale(self.top, (int(width), self.top.get_rect().size[1]))
-        self.bottom = pygame.image.load(image_dir + folder + '/bottom.png')
+        self.bottom = load_bottom_image(folder)
         self.bottom = pygame.transform.scale(self.bottom, (int(width), self.bottom.get_rect().size[1]))
-        self.border = pygame.image.load(image_dir + folder + '/border.png')
+        self.border = load_border_image(folder)
         self.border = pygame.transform.scale(self.border, (self.border.get_rect().size[0], int(height)))
-        Texture.__init__(self, pygame.image.load(image_dir + folder + '/background.png'), width, height)
+        Texture.__init__(self, load_background_image(folder), width, height)
 
     def rescale_y(self, height):
         Texture.rescale_y(self, height)

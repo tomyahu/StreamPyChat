@@ -1,7 +1,8 @@
 import pygame
-from consts import winWidth, winHeight, font_dir
+from consts import winWidth, winHeight
 from view.imageBank import marcoTex
-from .Texture import Spitted_Texture
+from view.fontBank import defaultFont
+from view.textureBank import defaultTex
 
 class Frame():
 
@@ -125,8 +126,8 @@ class Frame():
 class FrameFactory():
 
     def __init__(self):
-        self.texture = Spitted_Texture('default',  winWidth*0.95, 100)
-        self.font = pygame.font.Font(font_dir + 'HUM521B.TTF', 20)
+        self.texture = defaultTex
+        self.font = defaultFont
 
     def set_texture(self, tex):
         self.texture = tex
@@ -142,5 +143,5 @@ class FrameFactory():
 class DefaultFrame(Frame):
 
     def __init__(self, msg, screen, messages_below):
-        Frame.__init__(self, msg, marcoTex, screen, messages_below, pygame.font.Font('view/fonts/HUM521B.TTF', 20))
+        Frame.__init__(self, msg, marcoTex, screen, messages_below, defaultFont)
 
