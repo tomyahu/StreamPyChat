@@ -1,5 +1,5 @@
 import pygame
-from consts import winWidth, winHeight
+from consts import winWidth, winHeight, font_dir
 from view.imageBank import marcoTex
 from .Texture import Spitted_Texture
 
@@ -126,7 +126,7 @@ class FrameFactory():
 
     def __init__(self):
         self.texture = Spitted_Texture('default',  winWidth*0.95, 100)
-        self.font = pygame.font.Font('view/fonts/HUM521B.TTF', 20)
+        self.font = pygame.font.Font(font_dir + 'HUM521B.TTF', 20)
 
     def set_texture(self, tex):
         self.texture = tex
