@@ -1,6 +1,6 @@
 import pygame
 from consts import winWidth, winHeight
-from view.imageBank import marcoTex
+from view.textureBank import marcoTex
 from view.fontBank import defaultFont
 from view.textureBank import defaultTex
 

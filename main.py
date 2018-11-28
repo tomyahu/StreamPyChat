@@ -3,15 +3,16 @@ import pygame
 from pygame.locals import *
 from consts import winHeight, winWidth, FPS, COLOR_Black
 from model.Model import get_msgs
-from view.Frame import DefaultFrame, FrameFactory
-
-from view.textureBank import *
-from view.fontBank import *
 
 # Se inician modulos
 pygame.init()
 pygame.font.init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
+
+from view.Frame import DefaultFrame, FrameFactory
+from view.textureBank import *
+from view.fontBank import *
+
 
 # Se inicia la pantalla
 surface = pygame.display.set_mode((winWidth, winHeight))
