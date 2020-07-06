@@ -1,7 +1,7 @@
 import pygame
 from view.imageBank import load_background_image, load_border_image, load_bottom_image, load_top_image
 
-class Texture():
+class Texture:
 
     def __init__(self, image, width, height):
         self.image = pygame.transform.scale(image, (int(width), int(height)))
@@ -20,6 +20,7 @@ class Texture():
 
     def draw(self, screen,  xin, yin, xfin, yfin):
         screen.blit(self.image, (xin, yin))
+
 
 class Spitted_Texture(Texture):
 

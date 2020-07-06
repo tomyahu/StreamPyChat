@@ -23,6 +23,8 @@ clock = pygame.time.Clock()
 
 # Se crea la fabrica de frames
 factory = FrameFactory()
+factory.set_font(runemaster_font)
+factory.set_texture(runemaster_tex)
 
 # Entra en bucle principal
 while True:
@@ -45,10 +47,11 @@ while True:
     frames = []
 
     total_y = 10
+    y_separation = 10
     for i in range(len(msgs)):
         curr_frame = factory.get_Frame(msgs[i], surface, winHeight - total_y)
         curr_frame.draw()
-        total_y += curr_frame.tex.alto + 10
+        total_y += curr_frame.tex.alto + y_separation
 
 
 
