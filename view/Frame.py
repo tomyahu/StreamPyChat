@@ -4,25 +4,32 @@ from view.textureBank import marcoTex
 from view.fontBank import defaultFont
 from view.textureBank import defaultTex
 
-class Frame():
+class Frame:
 
-    #recibe la posicion, la lista de texturas que representa
-    #la animacion del boton y la pantalla
-    def __init__(self, msg, texture, screen, messages_below_y, font):
+    # recibe la posicion, la lista de texturas que representa
+    # la animacion del boton y la pantalla
+    def __init__(self, msg, texture, screen, messages_below_y, font, x=winWidth/2):
         self.msg = msg
         self.font = font
         self.tex = texture.get_texture()
         self.screen = screen
-        self.x = winWidth/2
+        self.x = x
         self.y = messages_below_y - self.tex.alto/2
 
-    #dbuja el boton
+        self.left_space = 10
+        self.right_space = 10
+        self.top_space = 10
+        self.bot_space = 10
+
+        self.space_between_frames = 10
+
+    # dibuja el boton
     def draw(self):
         self.y += self.tex.alto/2
-        self.tex.rescale_y(self.font.size("a")[1] * self.get_lines_msg() + 20)
+        self.tex.rescale_y(self.font.size("Ag")[1] * self.get_lines_msg() + self.top_space + self.bot_space)
         self.y -= self.tex.alto / 2
         self.tex.draw(self.screen, self.getXin(), self.getYin(), self.getXfin(), self.getYfin())
-        self.drawText((255,255,255))
+        self.draw_text((255, 255, 255))
 
     def get_lines_msg(self):
         text = self.msg.user.name + ': ' + self.msg.get_text()
@@ -33,7 +40,7 @@ class Frame():
         lineSpacing = -2
 
         # get the height of the font
-        fontHeight = font.size("Tg")[1]
+        fontHeight = font.size("Ag")[1]
 
         lines = 0
         while text:
@@ -59,14 +66,14 @@ class Frame():
 
         return lines
 
-    def drawText(self, color, aa=False, bkg=None):
+    def draw_text(self, color, aa=False, bkg=None):
         text = self.msg.user.name + ': ' + self.msg.get_text()
         surface = self.screen
-        rect = pygame.Rect(self.getXin()+10, self.getYin()+10, self.tex.ancho-20, winHeight/4)
+        rect = pygame.Rect(self.getXin()+self.left_space, self.getYin()+self.top_space, self.tex.ancho - self.left_space - self.right_space, winHeight/4)
         font = self.font
 
         y = rect.top
-        lineSpacing = -2
+        lineSpacing = 0
 
         # get the height of the font
         fontHeight = font.size("Tg")[1]
@@ -123,7 +130,8 @@ class Frame():
     def getYfin(self):
         return self.y + (self.tex.alto/2)
 
-class FrameFactory():
+
+class FrameFactory:
 
     def __init__(self):
         self.texture = defaultTex
@@ -137,7 +145,6 @@ class FrameFactory():
 
     def get_Frame(self, msg, screen, messages_below):
         return Frame(msg, self.texture, screen, messages_below, self.font)
-
 
 
 class DefaultFrame(Frame):
